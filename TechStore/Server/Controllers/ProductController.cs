@@ -21,7 +21,17 @@ namespace TechStore.Server.Controllers
         {
             try
             {
+                var products = await this.productRepository.GetItems();
+                var productCategories = await this.productRepository.GetCategories();
 
+                if (products == null || productCategories == null) 
+                {
+                    return NotFound();
+                }
+                else
+                {
+
+                }
             }
             catch (Exception)
             {
