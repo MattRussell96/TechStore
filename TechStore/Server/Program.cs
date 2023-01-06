@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using TechStore.Server.Data;
+using TechStore.Server.Entities;
+using TechStore.Server.Repositories;
+using TechStore.Server.Repositories.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContextPool<TechStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GameStoreConnection"))
     );
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
